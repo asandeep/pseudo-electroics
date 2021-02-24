@@ -1,0 +1,32 @@
+[tool.poetry]
+authors = ["Sandeep Aggarwal <asandeep.me@gmail.com>"]
+description = ""
+name = "sms"
+version = "0.1.0"
+
+[tool.poetry.dependencies]
+django = "^3.1.7"
+python = "^3.6"
+
+
+[tool.poetry.dev-dependencies]
+isort = "^5.7.0"
+pylint = "^2.7.1"
+pytest = "^5.2"
+pytest-cov = "^2.11.1"
+pre-commit = "2.1.1"
+
+
+[tool.black]
+line-length = 80
+
+
+[tool.isort]
+include_trailing_comma = true
+line_length = 80
+multi_line_output = 3
+
+
+[build-system]
+build-backend = "poetry.masonry.api"
+requires = ["poetry>=0.12"]
