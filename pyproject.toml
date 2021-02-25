@@ -1,20 +1,23 @@
 [tool.poetry]
 authors = ["Sandeep Aggarwal <asandeep.me@gmail.com>"]
-description = ""
+description = "Store management system"
 name = "sms"
 version = "0.1.0"
 
 [tool.poetry.dependencies]
 django = "^3.1.7"
 python = "^3.6"
+django-crispy-forms = "^1.11.1"
+django-role-permissions = "^3.1.1"
 
 
 [tool.poetry.dev-dependencies]
 isort = "^5.7.0"
+pre-commit = "2.1.1"
 pylint = "^2.7.1"
 pytest = "^5.2"
 pytest-cov = "^2.11.1"
-pre-commit = "2.1.1"
+django-debug-toolbar = "^3.2"
 
 
 [tool.black]

@@ -1,0 +1,16 @@
+{% extends "accounts/base.html" %} 
+
+{% block head_title %}Profile{% endblock %} 
+
+{% block inner %}
+<h1>{{ user.first_name }}'s Profile</h1>
+
+<form method="POST" action="{% url 'profile-lock' user.id %}">
+  {% csrf_token %}
+
+  <p>Lock {{ user.get_full_name }}?
+
+  <button class="primaryAction btn btn-primary" type="submit">Lock</button>
+</form>
+
+{% endblock %}
