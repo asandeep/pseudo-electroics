@@ -1,0 +1,17 @@
+{% extends "inventory/base.html" %} 
+
+{% load crispy_forms_tags %} 
+
+{% block head_title %}Delivery{% endblock %} 
+
+{% block inner %}
+<h1>Add new delivery record</h1>
+
+<form method="POST" action="{% url 'inventory-delivery-add' %}">
+  {% csrf_token %}
+
+  {{ form|crispy }}
+  <button class="primaryAction btn btn-primary" type="submit">Add</button>
+</form>
+
+{% endblock %}

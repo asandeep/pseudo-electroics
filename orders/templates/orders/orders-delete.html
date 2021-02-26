@@ -1,0 +1,17 @@
+{% extends "inventory/base.html" %} 
+
+{% load crispy_forms_tags %} 
+
+{% block head_title %}Order{% endblock %} 
+
+{% block inner %}
+<h1>Delete order</h1>
+
+<form method="POST">
+    {% csrf_token %}
+
+    <p>Are you sure you want to delete "{{ object }}"?</p>
+    <button class="primaryAction btn btn-primary" type="submit">Confirm</button>
+</form>
+
+{% endblock %}

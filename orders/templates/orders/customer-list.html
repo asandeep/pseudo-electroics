@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h2>Customers</h2>
+<ul>
+    {% for customer in customers %}
+    <li>
+        <div>
+            <span>
+                {{ customer.name }}
+            <span>
+            <span>
+                {{ customer.orders.latest.created|date }}
+            <span>
+            <span>
+                {{ customer.orders.latest.price }}
+            <span>
+        </div>
+    </li>
+    {% endfor %}
+</ul>
+{% endblock %}

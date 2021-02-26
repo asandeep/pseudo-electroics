@@ -1,0 +1,38 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h2>Orders</h2>
+<button>
+    <a href="{% url 'order-add' %}">Add new order</a>
+</button>
+<ul>
+    {% for order in orders %}
+    <li>
+        <div>
+            <span>
+                {{ order.customer.name }}
+            <span>
+            <span>
+                {{ order.product.name }}
+            <span>
+            <span>
+                {{ order.discount }}
+            <span>
+            <span>
+                {{ order.price }}
+            <span>
+            <button>
+                <a href="{% url 'order-update' order.id %}">
+                    Update
+                </a>
+            </button>
+            <button>
+                <a href="{% url 'order-delete' order.id %}">
+                    Delete
+                </a>
+            </button>
+        </div>
+    </li>
+    {% endfor %}
+</ul>
+{% endblock %}

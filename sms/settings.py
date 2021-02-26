@@ -52,6 +52,8 @@ INSTALLED_APPS = [
     "rolepermissions",
     # Project apps
     "accounts",
+    "inventory",
+    "orders",
 ]
 
 MIDDLEWARE = [
