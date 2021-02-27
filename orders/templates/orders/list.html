@@ -4,39 +4,48 @@
 
 {% block content %}
 <h2>Orders</h2>
-<button>
-    <a href="{% url 'orders:create' %}">Add new order</a>
+
+<button  type="button" class="btn btn-primary">
+  <a href="{% url 'orders:create' %}">Add new order</a>
 </button>
-<ul>
+
+<table class="table">
+  <thead>
+    <tr>
+      <th>#</th>
+      <th>Customer Name</th>
+      <th>Product</th>
+      <th>Discount Percentage</th>
+      <th>Price</th>
+      <th>Order Actions</th>
+    </tr>
+  </thead>
+  <tbody>
     {% for order in orders %}
-    <li>
-        <div>
-            <span>
-                {{ order.customer.name }}
-            <span>
-            <span>
-                {{ order.product.name }}
-            <span>
-            <span>
-                {{ order.discount }}
-            <span>
-            <span>
-                {{ order.price }}
-            <span>
-            <button>
-                <a href="{% url 'orders:update' order.id %}">
-                    Update
-                </a>
-            </button>
-            {% if request.user|has_role:'store_owner' %}
-            <button>
-                <a href="{% url 'orders:delete' order.id %}">
-                    Delete
-                </a>
-            </button>
-            {% endif %}
-        </div>
-    </li>
+    <tr>
+      <td>{{ forloop.counter }}</td>
+      <td>{{ order.customer.name }}</td>
+      <td>{{ order.product.name }}</td>
+      <td>{{ order.discount }}</td>
+      <td>{{ order.price }}</td>
+      <td>
+        <button type="button" class="btn btn-secondary">
+          <a href="{% url 'orders:update' order.id %}">
+            Update
+          </a>
+        </button>
+
+        {% if request.user|has_role:'store_owner' %}
+        <button type="button" class="btn btn-danger">
+          <a href="{% url 'orders:delete' order.id %}">
+            Delete
+          </a>
+        </button>
+        {% endif %}
+
+      </td>
+    </tr>
     {% endfor %}
-</ul>
+  </tbody>
+</table>
 {% endblock %}

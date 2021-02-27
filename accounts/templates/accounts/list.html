@@ -2,30 +2,39 @@
 
 {% block content %}
 <h2>Employees</h2>
-<button>
-    <a href="{% url 'accounts:create' %}">Add new employee</a>
+<button type="button" class="btn btn-primary">
+  <a href="{% url 'accounts:create' %}">Add new employee</a>
 </button>
-<ul>
+<table class="table">
+  <thead>
+    <tr>
+      <th>#</th>
+      <th>Employee Name</th>
+      <th>Actions</th>
+    </tr>
+  </thead>
+  <tbody>
     {% for account in accounts %}
-    <li>
-        <div>
-            <span>
-                {{ account.get_full_name }}
-                {% if account.locked %}
-                 - Locked
-                {% endif %}
-            <span>
-            <button>
-                <a href="{% url 'accounts:update' account.id %}">Edit</a>
-            </button>
-            <button>
-                <a href="{% url 'accounts:reset-password' account.id %}">Reset password</a>
-            </button>
-            <button>
-                <a href="{% url 'accounts:lock' account.id %}">Lock</a>
-            </button>
-        </div>
-    </li>
+    <tr>
+      <td>{{ forloop.counter }}</td>
+      <td>{{ account.get_full_name }}
+        {% if account.locked %}
+            - Locked
+        {% endif %}
+      </td>
+      <td>
+        <button type="button" class="btn btn-secondary">
+          <a href="{% url 'accounts:update' account.id %}">Edit</a>
+        </button>
+        <button type="button" class="btn btn-secondary">
+          <a href="{% url 'accounts:reset-password' account.id %}">Reset password</a>
+        </button>
+        <button type="button" class="btn btn-danger">
+          <a href="{% url 'accounts:lock' account.id %}">Lock</a>
+        </button>
+      </td>
+    </tr>
     {% endfor %}
-</ul>
+  </tbody>
+</table>
 {% endblock %}

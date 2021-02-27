@@ -7,6 +7,30 @@
   {{ user.first_name }}'s Profile
 </h1>
 
-{{ object.get_full_name }}
+<table class="table table-borderless">
+  <tbody>
+    <tr>
+      <td>Name</td>
+      <td>{{ user.get_full_name }}</td>
+    </tr>
+    <tr>
+      <td>Date of birth</td>
+      <td>{{ user.birth_date }}</td>
+    </tr>
+    <tr>
+      <td>Address</td>
+      <td>{{ user.address }}</td>
+    </tr>
+    {% comment %} 
+    Currently database design doesn't support employer and employee
+    relationship. 
+    TODO(sandeep): Update models to support this relationship
+     {% endcomment %}
+    <tr>
+      <td>Employer</td>
+      <td>{{ request.user.get_full_name }}</td>
+    </tr>
+  </tbody>
+</table>
 
 {% endblock %}

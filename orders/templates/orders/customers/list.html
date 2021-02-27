@@ -2,21 +2,24 @@
 
 {% block content %}
 <h2>Customers</h2>
-<ul>
+<table class="table">
+  <thead>
+    <tr>
+      <th>#</th>
+      <th>Name</th>
+      <th>Last Billed on</th>
+      <th>Last bill amount</th>
+    </tr>
+  </thead>
+  <tbody>
     {% for customer in customers %}
-    <li>
-        <div>
-            <span>
-                {{ customer.name }}
-            <span>
-            <span>
-                {{ customer.orders.latest.created|date }}
-            <span>
-            <span>
-                {{ customer.orders.latest.price }}
-            <span>
-        </div>
-    </li>
+    <tr>
+      <td>{{ forloop.counter }}</td>
+      <td>{{ customer.name }}</td>
+      <td>{{ customer.orders.latest.created|date }}</td>
+      <td>{{ customer.orders.latest.price }}</td>
+    </tr>
     {% endfor %}
-</ul>
+  </tbody>
+</table>
 {% endblock %}
