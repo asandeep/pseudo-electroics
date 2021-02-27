@@ -1,4 +1,4 @@
-{% extends "inventory/base.html" %} 
+{% extends "orders/base.html" %} 
 
 {% load crispy_forms_tags %} 
 
@@ -10,7 +10,7 @@
 <form method="POST">
     {% csrf_token %}
 
-    <p>Are you sure you want to delete "{{ object }}"?</p>
+    <p>Are you sure you want to delete order: "{{ object }}"?</p>
     <button class="primaryAction btn btn-primary" type="submit">Confirm</button>
 </form>
 

@@ -4,6 +4,11 @@ from django.urls import reverse
 
 
 class User(auth_models.AbstractUser):
-    birth_date = models.DateField(null=True, blank=True)
-    address = models.TextField(null=True, blank=True)
-    locked = models.BooleanField(default=False)
+    """Extends default model to add project specific fields."""
+
+    birth_date = models.DateField(help_text="Employee Date of birth.")
+    address = models.TextField(help_text="Employee permanent address")
+    locked = models.BooleanField(
+        default=False,
+        help_text="Whether the account has been locked by Store owner.",
+    )

@@ -2,12 +2,12 @@
 
 {% load crispy_forms_tags %} 
 
-{% block head_title %}Order{% endblock %} 
+{% block head_title %}Received Inventory{% endblock %} 
 
 {% block inner %}
-<h1>Add new order</h1>
+<h1>Add details of received inventory</h1>
 
-<form method="POST" action="{% url 'order-add' %}">
+<form method="POST">
   {% csrf_token %}
 
   {{ form|crispy }}

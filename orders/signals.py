@@ -5,7 +5,12 @@ from orders import models
 
 
 @receiver(signals.post_save, sender=models.Order)
-def on_new_order(sender, **kwargs):
+def on_order_create_or_update(sender, **kwargs):
+    """Updates product inventory when an order is created/updated.
+
+    Updating an existing order should not impact the quantity, so same is
+    ignored. For new orders, the quantity will be reduced accordingly.
+    """
     order = kwargs["instance"]
     created = kwargs["created"]
     raw = kwargs["raw"]
@@ -25,6 +30,11 @@ def on_new_order(sender, **kwargs):
 
 @receiver(signals.post_delete, sender=models.Order)
 def on_order_deleted(sender, **kwargs):
+    """Updates the inventory when an existing order is deleted.
+
+    Deleting an existing order presumeably results in product getting returned
+    back to store, which should increase the product quantity.
+    """
     order = kwargs["instance"]
 
     product = order.product

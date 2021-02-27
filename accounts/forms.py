@@ -5,11 +5,18 @@ from accounts import models
 
 
 class UserAuthenticationForm(auth_forms.AuthenticationForm):
+    """
+    Override default authentication form to add vaildation for user whose
+    account is locked by store owner.
+    """
+
     def confirm_login_allowed(self, user):
         if user.locked:
             raise forms.ValidationError(
                 "User account is locked. Please contact store owner."
             )
+
+        return super().confirm_login_allowed(user)
 
 
 class UserCreationForm(forms.ModelForm):

@@ -6,9 +6,9 @@
   <head>
     <meta charset="utf-8" />
     <meta http-equiv="x-ua-compatible" content="ie=edge" />
-    <title>{% block title %}sms{% endblock title %}</title>
+    <title>{% block title %}Pseudo Electronics{% endblock title %}</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="description" content="Store management system" />
+    <meta name="description" content="Pseudo Electronics" />
     <meta name="author" content="Sandeep Aggarwal" />
 
     <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
@@ -25,7 +25,7 @@
       crossorigin="anonymous"
     />
 
-    <link href="{% static 'css/sms.css' %}" rel="stylesheet" />
+    <link href="{% static 'css/pseudo.css' %}" rel="stylesheet" />
 
     {% endblock %} {% block javascript %}
 
@@ -49,7 +49,7 @@
       crossorigin="anonymous"
     ></script>
 
-    <script defer src="{% static 'js/sms.js' %}"></script>
+    <script defer src="{% static 'js/pseudo.js' %}"></script>
 
     {% endblock javascript %}
   </head>
@@ -68,9 +68,7 @@
         >
           <span class="navbar-toggler-icon"></span>
         </button>
-        <a class="navbar-brand" href="{% url 'home' %}"
-          >Store Management System</a
-        >
+        <a class="navbar-brand" href="{% url 'home' %}">Pseudo Electronics</a>
 
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
           <ul class="navbar-nav mr-auto">
@@ -82,7 +80,7 @@
             {% if request.user.is_authenticated %}
               {% if request.user|has_role:'store_owner' %}
               <li class="nav-item">
-                <a class="nav-link" href="{% url 'manage-employees' %}">
+                <a class="nav-link" href="{% url 'accounts:list' %}">
                   Manage Employees
                 </a>
               </li>
@@ -90,45 +88,45 @@
 
             <li class="nav-item">
               <a class="nav-link" 
-                 href="{% url 'profile-detail' request.user.id %}">
+                 href="{% url 'accounts:details' request.user.id %}">
                   Profile
               </a>
             </li>
 
             <li class="nav-item">
               <a class="nav-link" 
-                 href="{% url 'order-list' %}">
+                 href="{% url 'orders:list' %}">
                   Orders
               </a>
             </li>
 
             <li class="nav-item">
               <a class="nav-link" 
-                 href="{% url 'customer-list' %}">
+                 href="{% url 'orders:list-customer' %}">
                   Customers
               </a>
             </li>
 
             <li class="nav-item">
               <a class="nav-link" 
-                 href="{% url 'inventory-list' %}">
+                 href="{% url 'inventory:list' %}">
                   Inventory
               </a>
             </li>
-
+            
             <li class="nav-item">
               <a class="nav-link" 
-                 href="{% url 'inventory-delivery' %}">
-                  Inventory Deliveries
+                 href="{% url 'inventory:list-receiving' %}">
+                  Inventory Received
               </a>
             </li>
 
             <li class="nav-item">
-              <a class="nav-link" href="{% url 'logout' %}">Sign Out</a>
+              <a class="nav-link" href="{% url 'accounts:logout' %}">Sign Out</a>
             </li>
             {% else %}
             <li class="nav-item">
-              <a id="log-in-link" class="nav-link" href="{% url 'login' %}"
+              <a id="log-in-link" class="nav-link" href="{% url 'accounts:login' %}"
                 >Sign In</a
               >
             </li>

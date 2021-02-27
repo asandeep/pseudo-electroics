@@ -1,9 +1,11 @@
 {% extends "base.html" %}
 
+{% load permission_tags %}
+
 {% block content %}
 <h2>Orders</h2>
 <button>
-    <a href="{% url 'order-add' %}">Add new order</a>
+    <a href="{% url 'orders:create' %}">Add new order</a>
 </button>
 <ul>
     {% for order in orders %}
@@ -22,15 +24,17 @@
                 {{ order.price }}
             <span>
             <button>
-                <a href="{% url 'order-update' order.id %}">
+                <a href="{% url 'orders:update' order.id %}">
                     Update
                 </a>
             </button>
+            {% if request.user|has_role:'store_owner' %}
             <button>
-                <a href="{% url 'order-delete' order.id %}">
+                <a href="{% url 'orders:delete' order.id %}">
                     Delete
                 </a>
             </button>
+            {% endif %}
         </div>
     </li>
     {% endfor %}

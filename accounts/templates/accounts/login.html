@@ -7,7 +7,7 @@
 {% block inner %}
 <h1>Sign In</h1>
 
-<form class="login" method="POST" action="{% url 'login' %}">
+<form class="login" method="POST">
   {% csrf_token %} {{ form|crispy }} {% if redirect_field_value %}
   <input
     type="hidden"

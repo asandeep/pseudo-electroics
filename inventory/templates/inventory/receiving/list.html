@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+
+{% load permission_tags %}
+
+{% block content %}
+<h2>Inventory Received</h2>
+{% if request.user|has_role:'store_owner' %}
+<button>
+    <a href="{% url 'inventory:create-receiving' %}">Create new record</a>
+</button>
+{% endif %}
+<ul>
+    {% for received_inventory in receiving %}
+    <li>
+        <div>
+            <span>
+                {{ received_inventory.product.name }}
+            <span>
+            <span>
+                {{ received_inventory.distributor.name }}
+            <span>
+            <span>
+                {{ received_inventory.quantity }}
+            <span>
+            <span>
+                {{ received_inventory.distributor_price }}
+            <span>
+            <span>
+                {{ received_inventory.delivery_date }}
+            <span>
+
+        </div>
+    </li>
+    {% endfor %}
+</ul>
+{% endblock %}

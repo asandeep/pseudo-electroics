@@ -5,7 +5,11 @@ from inventory import models
 
 
 @receiver(signals.post_save, sender=models.InventoryReceived)
-def on_delivery_added(sender, **kwargs):
+def on_inventory_received(sender, **kwargs):
+    """
+    A signal receiver that updates the product quantity when new inventory is
+    received.
+    """
     inventory_received = kwargs["instance"]
     created = kwargs["created"]
     raw = kwargs["raw"]
@@ -14,7 +18,7 @@ def on_delivery_added(sender, **kwargs):
     if raw:
         return
 
-    # A delivery record is not expected to be updated. Just in case it does,
+    # A receiving record is not expected to be updated. Just in case it does,
     # ignore.
     if not created:
         return

@@ -1,29 +1,28 @@
 from django.contrib.auth import views as auth_views
+from django.contrib.auth.decorators import login_required
 from django.urls import path, re_path
 from django.views import generic as generic_views
 
 from orders import models, views
 
+app_name = "orders"
+
 urlpatterns = [
+    path("list/", login_required(views.ListOrders.as_view()), name="list"),
+    path("create/", login_required(views.CreateOrder.as_view()), name="create"),
     path(
-        "list/",
-        generic_views.ListView.as_view(
-            model=models.Order,
-            template_name="orders/order-list.html",
-            context_object_name="orders",
-        ),
-        name="order-list",
+        "update/<int:pk>/",
+        login_required(views.UpdateOrder.as_view()),
+        name="update",
     ),
-    path("add/", views.OrderCreate.as_view(), name="order-add"),
-    path("delete/<int:pk>/", views.OrderDelete.as_view(), name="order-delete"),
-    path("update/<int:pk>/", views.OrderUpdate.as_view(), name="order-update"),
+    path(
+        "delete/<int:pk>/",
+        login_required(views.DeleteOrder.as_view()),
+        name="delete",
+    ),
     path(
         "customers/list/",
-        generic_views.ListView.as_view(
-            model=models.Customer,
-            template_name="orders/customer-list.html",
-            context_object_name="customers",
-        ),
-        name="customer-list",
+        login_required(views.ListCustomers.as_view()),
+        name="list-customer",
     ),
 ]

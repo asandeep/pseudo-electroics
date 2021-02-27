@@ -1,13 +1,13 @@
-{% extends "inventory/base.html" %} 
+{% extends "orders/base.html" %} 
 
 {% load crispy_forms_tags %} 
 
-{% block head_title %}Delivery{% endblock %} 
+{% block head_title %}Orders{% endblock %} 
 
 {% block inner %}
-<h1>Add new delivery record</h1>
+<h1>Add new order</h1>
 
-<form method="POST" action="{% url 'inventory-delivery-add' %}">
+<form method="POST">
   {% csrf_token %}
 
   {{ form|crispy }}

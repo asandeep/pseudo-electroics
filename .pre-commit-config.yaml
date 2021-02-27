@@ -48,4 +48,4 @@ repos:
         types: [python]
         pass_filenames: false
         stages: [push]
-        args: [--cov=sms, --cov-fail-under=80]
+        args: [--cov=pseudo, --cov-fail-under=80]

@@ -1,12 +1,19 @@
 from django.contrib.auth import views as auth_views
+from django.contrib.auth.decorators import login_required
 from django.urls import path
-from django.views import generic as generic_views
 
 from accounts import forms, views
 
+app_name = "accounts"
+
 urlpatterns = [
     path(
-        "login",
+        "<int:pk>/",
+        login_required(views.AccountDetails.as_view()),
+        name="details",
+    ),
+    path(
+        "login/",
         auth_views.LoginView.as_view(
             template_name="accounts/login.html",
             authentication_form=forms.UserAuthenticationForm,
@@ -14,34 +21,29 @@ urlpatterns = [
         name="login",
     ),
     path(
-        "logout",
-        auth_views.LogoutView.as_view(template_name="home.html"),
+        "logout/",
+        login_required(
+            auth_views.LogoutView.as_view(template_name="home.html")
+        ),
         name="logout",
     ),
+    path("list/", login_required(views.ListAccounts.as_view()), name="list"),
     path(
-        "employees", views.ManageEmployeeView.as_view(), name="manage-employees"
+        "create/", login_required(views.CreateAccount.as_view()), name="create"
     ),
     path(
-        "profile/detail/(?P<pk>\d+)/$",
-        views.ProfileDetail.as_view(),
-        name="profile-detail",
+        "update/<int:id>/",
+        login_required(views.UpdateAccount.as_view()),
+        name="update",
     ),
     path(
-        "profile/create/$", views.ProfileCreate.as_view(), name="profile-create"
+        "lock/<int:id>/",
+        login_required(views.LockAccount.as_view()),
+        name="lock",
     ),
     path(
-        "profile/edit/(?P<pk>\d+)/$",
-        views.ProfileUpdate.as_view(),
-        name="profile-edit",
-    ),
-    path(
-        "profile/lock/(?P<pk>\d+)/$",
-        views.ProfileLock.as_view(),
-        name="profile-lock",
-    ),
-    path(
-        "profile/reset-password/(?P<pk>\d+)/$",
-        views.ProfileResetPassword.as_view(),
-        name="profile-reset-password",
+        "reset-password/<int:id>/",
+        login_required(views.ResetPassword.as_view()),
+        name="reset-password",
     ),
 ]

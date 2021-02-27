@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h2>Employees</h2>
+<button>
+    <a href="{% url 'accounts:create' %}">Add new employee</a>
+</button>
+<ul>
+    {% for account in accounts %}
+    <li>
+        <div>
+            <span>
+                {{ account.get_full_name }}
+                {% if account.locked %}
+                 - Locked
+                {% endif %}
+            <span>
+            <button>
+                <a href="{% url 'accounts:update' account.id %}">Edit</a>
+            </button>
+            <button>
+                <a href="{% url 'accounts:reset-password' account.id %}">Reset password</a>
+            </button>
+            <button>
+                <a href="{% url 'accounts:lock' account.id %}">Lock</a>
+            </button>
+        </div>
+    </li>
+    {% endfor %}
+</ul>
+{% endblock %}
