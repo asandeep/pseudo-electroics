@@ -1,0 +1,60 @@
+# Customers
+- model: orders.customer
+  pk: 1
+  fields:
+    name: Raghav Joshi
+    contact_number: '9912340000'
+    email: raghav@joshi.com
+- model: orders.customer
+  pk: 2
+  fields:
+    name: Neetu Verma
+    contact_number: '8813411023'
+    email: neetu@verma.in
+- model: orders.customer
+  pk: 3
+  fields:
+    name: Md Akram
+    contact_number: '9818110650'
+    email: mdakram@akram.com
+- model: orders.customer
+  pk: 4
+  fields:
+    name: Ankit Jain
+    contact_number: '8043110180'
+    email: ankitjain12@gmail.com
+
+
+# Sales orders
+- model: orders.order
+  pk: 1
+  fields:
+    discount: 10
+    customer: 1
+    product: 1
+    created: 2021-01-22 01:30:48+00:00
+    updated: 2021-02-26 04:33:21.251312+00:00
+- model: orders.order
+  pk: 2
+  fields:
+    discount: 0
+    customer: 2
+    product: 2
+    created: 2021-01-18 01:30:48+00:00
+    updated: 2021-02-26 04:33:21.251312+00:00
+- model: orders.order
+  pk: 3
+  fields:
+    discount: 0
+    customer: 3
+    product: 3
+    created: 2021-01-18 01:30:48+00:00
+    updated: 2021-02-26 04:33:21.251312+00:00
+- model: orders.order
+  pk: 4
+  fields:
+    discount: 10
+    customer: 4
+    product: 4
+    created: 2021-01-21 01:30:48+00:00
+    updated: 2021-02-26 04:33:21.251312+00:00

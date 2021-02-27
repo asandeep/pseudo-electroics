@@ -1,0 +1,112 @@
+# Products
+- model: inventory.product
+  pk: 1
+  fields:
+    name: iPhone 12 Pro Max 256GB
+    manufacturer: Apple
+    price: 135000
+    quantity: 15
+- model: inventory.product
+  pk: 2
+  fields:
+    name: OnePlus Nord 128GB
+    manufacturer: OnePlus
+    price: 55000
+    quantity: 20
+- model: inventory.product
+  pk: 3
+  fields:
+    name: Samsung S20 128GB
+    manufacturer: Samsung
+    price: 115000
+    quantity: 12
+- model: inventory.product
+  pk: 4
+  fields:
+    name: Moto Razr 5G 256GB
+    manufacturer: Motorola
+    price: 40000
+    quantity: 30
+
+
+# Distributors
+- model: inventory.distributor
+  pk: 1
+  fields:
+    code: D0001
+    name: Surajit Electronics
+    address: "A-45/46,\r\nDhan Teras Marg,\r\nPunjabi Bagh"
+- model: inventory.distributor
+  pk: 2
+  fields:
+    code: D0002
+    name: Mishra Superstore
+    address: DA-4, Pranama Colony, Malviya Nagar
+- model: inventory.distributor
+  pk: 3
+  fields:
+    code: D0003
+    name: Pankaj Infotech
+    address: "I-118, Andher Morh,\r\nChandni Chowk"
+
+
+# Distributor Contacts
+- model: inventory.distributorcontact
+  pk: 1
+  fields:
+    name: Alok Sachdev
+    number: '9911110000'
+    distributor: 1
+- model: inventory.distributorcontact
+  pk: 2
+  fields:
+    name: Pankaj Verma
+    number: '7811110230'
+    distributor: 2
+- model: inventory.distributorcontact
+  pk: 3
+  fields:
+    name: Raman Yadav
+    number: '9311110650'
+    distributor: 1
+- model: inventory.distributorcontact
+  pk: 4
+  fields:
+    name: George Fernandes
+    number: '8133110180'
+    distributor: 3
+
+
+# Inventory received
+- model: inventory.inventoryreceived
+  pk: 1
+  fields:
+    quantity: 15
+    distributor_price: 125000
+    delivery_date: 2020-12-25
+    product: 1
+    distributor: 1
+- model: inventory.inventoryreceived
+  pk: 2
+  fields:
+    quantity: 20
+    distributor_price: 45000
+    delivery_date: 2021-01-20
+    product: 2
+    distributor: 2
+- model: inventory.inventoryreceived
+  pk: 3
+  fields:
+    quantity: 12
+    distributor_price: 105000
+    delivery_date: 2020-11-22
+    product: 3
+    distributor: 1
+- model: inventory.inventoryreceived
+  pk: 4
+  fields:
+    quantity: 30
+    distributor_price: 35000
+    delivery_date: 2020-12-28
+    product: 4
+    distributor: 3
