@@ -33,7 +33,7 @@ class Order(models.Model):
     )
 
     class Meta:
-        get_latest_by = "-created"
+        get_latest_by = "created"
         ordering = ["-created"]
 
     def __str__(self):
